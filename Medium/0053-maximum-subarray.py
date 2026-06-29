@@ -49,3 +49,23 @@ class Solution:
 
         return maxsum
 
+"""
+Submission 3
+Language: python3
+Runtime: 30 ms
+Memory: 31.2 MB
+"""
+class Solution:
+    def maxSubArray(self, nums: List[int]) -> int:
+        if len(nums) == 1:
+            return nums[0]
+
+        currsum = 0
+        maxsum = float('-inf')
+
+        for num in nums:
+            currsum = max(num, currsum + num)
+            maxsum = max(maxsum, currsum)
+        
+        return maxsum
+

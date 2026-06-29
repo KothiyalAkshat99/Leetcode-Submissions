@@ -34,3 +34,28 @@ class Solution:
             return False
         return True
 
+"""
+Submission 2
+Language: python3
+Runtime: 21 ms
+Memory: 54 MB
+"""
+class Solution:
+    def mergeTriplets(self, triplets: List[List[int]], target: List[int]) -> bool:
+        ret = [False] * 3   # Flips to true on match
+
+        x, y, z = target
+
+        for a, b, c in triplets:
+            if a > x or b > y or c > z:     # If triplet vals > target
+                continue
+            
+            if a == x:
+                ret[0] = True
+            if b == y:
+                ret[1] = True
+            if c == z:
+                ret[2] = True
+        
+        return False if False in ret else True
+

@@ -43,3 +43,33 @@ class Solution:
             print("--")
         return True
 
+"""
+Submission 2
+Language: python3
+Runtime: 29 ms
+Memory: 21.2 MB
+"""
+class Solution:
+    def isNStraightHand(self, hand: List[int], groupSize: int) -> bool:
+        if len(hand) % groupSize != 0:
+            return False
+
+        card_count = Counter(hand)
+
+        for card in hand:
+            start_card = card
+            # Find start of potential straight
+            while card_count[start_card - 1]:
+                start_card -= 1
+            
+            # Process sequence starting from start_card
+            while start_card <= card:
+                while card_count[start_card]:
+                    for next_card in range(start_card, start_card + groupSize):
+                        if not card_count[next_card]:
+                            return False
+                        card_count[next_card] -= 1
+                start_card += 1
+        
+        return True
+
